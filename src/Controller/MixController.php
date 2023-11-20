@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 class MixController extends AbstractController
 {
-    #[Route('/mix', name: 'app_mix')]
+    #[Route('/mix/new')]
     public function new(EntityManagerInterface $entityManager): Response
     {
         $mix = new VinylMix();
@@ -21,10 +21,11 @@ class MixController extends AbstractController
         $entityManager->persist($mix);
         $entityManager->flush();
         
-        dd($mix);
         
-        return $this->render('mix/index.html.twig', [
-            'controller_name' => 'MixController',
-        ]);
+        return new Response(sprintf(
+            'Mix %d is %d tracks of pure 80\'s heaven',
+            $mix->getId(),
+            $mix->getTrackCount()
+        ));
     }
 }

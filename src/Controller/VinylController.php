@@ -8,7 +8,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use App\Repository\VinylMixRepository;
 
+class VinylMix
+{
 
+}
 class VinylController extends AbstractController
 {
     #[Route('/', name: 'app_homepage')]
@@ -32,10 +35,11 @@ class VinylController extends AbstractController
     public function browse(VinylMixRepository $mixRepository, string $slug = null): Response
     {
         $genre = $slug ? u(str_replace('-', ' ', $slug))->title(true) : null;
-        $mixes = $mixRepository->findAll();
+        $mixes = $mixRepository->findBy([], ['votes' => 'DESC']);
         return $this->render('vinyl/browse.html.twig', [
             'genre' => $genre,
             'mixes' => $mixes,
         ]);
     }
 }
+

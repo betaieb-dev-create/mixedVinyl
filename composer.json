@@ -11,6 +11,7 @@
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.16",
         "knplabs/knp-time-bundle": "^2.2",
+        "pagerfanta/twig": "^4.2",
         "sensio/framework-extra-bundle": "^6.2",
         "stof/doctrine-extensions-bundle": "^1.9",
         "symfony/asset": "6.3.*",
